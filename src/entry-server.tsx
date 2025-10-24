@@ -1,11 +1,14 @@
 import { StrictMode } from "react";
 import { renderToString } from "react-dom/server";
-import { Application } from "./Application";
+import { Application } from "./client/application";
+import { MemoryRouter } from "react-router";
 
-export function render(_url: string) {
+export function render(url: string) {
   const html = renderToString(
     <StrictMode>
-      <Application />
+      <MemoryRouter initialEntries={[url]}>
+        <Application />
+      </MemoryRouter>
     </StrictMode>
   );
 

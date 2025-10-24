@@ -1,6 +1,7 @@
 import { StrictMode } from "react";
 import { hydrateRoot } from "react-dom/client";
-import { Application } from "./Application.tsx";
+import { Application } from "./client/application";
+import { BrowserRouter } from "react-router";
 
 const root = document.getElementById("root");
 
@@ -11,6 +12,8 @@ if (!root) {
 hydrateRoot(
   root,
   <StrictMode>
-    <Application />
+    <BrowserRouter>
+      <Application />
+    </BrowserRouter>
   </StrictMode>
 );
