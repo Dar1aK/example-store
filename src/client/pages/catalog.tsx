@@ -1,15 +1,10 @@
 import type { FC } from "react";
-import { useQuery } from "@tanstack/react-query";
-import type { Product } from "../../common/types";
+
 import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
 
-interface ProductItemProps {
-  product: Product;
-}
-
-export const ProductItem: FC<ProductItemProps> = ({ product }) => {
-  return <div>{product.name}</div>;
-};
+import type { Product } from "@common/types";
+import { ProductItem } from "@components/product-item";
 
 export const Catalog: FC = () => {
   const { data, isLoading, error } = useQuery<Product[]>({
@@ -27,7 +22,21 @@ export const Catalog: FC = () => {
     return error.message;
   }
 
-  const content = data.map((p) => <ProductItem key={p.id} product={p} />);
+  const content = data.map((p) => (
+    <div key={p.id} className="col-12 col-sm-6 col-md-4 col-lg-3">
+      <ProductItem product={p} />
+    </div>
+  ));
 
-  return <div className="catalog">{content}</div>;
+  return (
+    <>
+      <title>Catalog — Example Store</title>
+      <div className="row">
+        <div className="col">
+          <h1>Catalog</h1>
+        </div>
+      </div>
+      <div className="row">{content}</div>
+    </>
+  );
 };

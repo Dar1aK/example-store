@@ -23,7 +23,13 @@
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
-    "noImplicitAny": true
+    "noImplicitAny": true,
+
+    "baseUrl": ".",
+    "paths": {
+      "@common/*": ["src/common/*"],
+      "@components/*": ["src/client/components/*"]
+    }
   },
   "include": ["src"]
 }
