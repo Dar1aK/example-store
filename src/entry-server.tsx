@@ -1,14 +1,21 @@
 import { StrictMode } from "react";
-import { renderToString } from "react-dom/server";
-import { Application } from "./client/application";
+import { Provider } from "react-redux";
 import { MemoryRouter } from "react-router";
+import { renderToString } from "react-dom/server";
+
+import { Application } from "@/application";
+import { initStore } from "@/store";
 
 export function render(url: string) {
+  const store = initStore();
+
   const html = renderToString(
     <StrictMode>
-      <MemoryRouter initialEntries={[url]}>
-        <Application />
-      </MemoryRouter>
+      <Provider store={store}>
+        <MemoryRouter initialEntries={[url]}>
+          <Application />
+        </MemoryRouter>
+      </Provider>
     </StrictMode>
   );
 

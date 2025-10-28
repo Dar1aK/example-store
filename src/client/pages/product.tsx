@@ -27,7 +27,7 @@ export const Product: FC = () => {
 
   return (
     <>
-      <title>{data.name}</title>
+      <title>{data.name} — Example Store</title>
       <PageTitle>{data.name}</PageTitle>
       <ProductDetails product={data} />
     </>

@@ -1,22 +1,15 @@
 import type { FC, PropsWithChildren } from "react";
 import { NavLink } from "react-router";
 
-interface HeaderLinkProps {
-  text: string;
-  to: string;
-}
-
-const HeaderLink: FC<HeaderLinkProps> = ({ to, text }) => {
-  return (
-    <li className="nav-item">
-      <NavLink className="nav-link" to={to} end>
-        {text}
-      </NavLink>
-    </li>
-  );
-};
+import { HeaderLink } from "@components/header-link";
+import { useAppSelector } from "@/store";
 
 export const Layout: FC<PropsWithChildren> = ({ children }) => {
+  // cart info
+  const cart = useAppSelector((s) => s.cart);
+  const count = Object.values(cart).reduce((a, i) => a + i.count, 0);
+  const cartLabel = count ? `Cart (${count})` : `Cart`;
+
   return (
     <>
       <nav className="navbar navbar-expand-sm bg-body-tertiary">
@@ -24,12 +17,13 @@ export const Layout: FC<PropsWithChildren> = ({ children }) => {
           <NavLink className="navbar-brand" to="/" end>
             Example store
           </NavLink>
-          <div className="collapse navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav">
-              <HeaderLink to="/catalog" text="Catalog" />
-              <HeaderLink to="/about" text="About" />
-            </ul>
-          </div>
+          <ul className="navbar-nav flex-fill">
+            <HeaderLink to="/catalog" text="Catalog" />
+            <HeaderLink to="/about" text="About" />
+          </ul>
+          <ul className="navbar-nav">
+            <HeaderLink to="/checkout" text={cartLabel} />
+          </ul>
         </div>
       </nav>
       <div className="container">{children}</div>

@@ -1,14 +1,21 @@
-import type { FC } from "react";
+import { useCallback, type FC } from "react";
 import { Link } from "react-router";
 
 import { Image } from "@components/image";
 import type { ProductShortInfo } from "@common/types";
+import { addToCart, useAppDispatch } from "@/store";
 
 interface ProductItemProps {
   product: ProductShortInfo;
 }
 
 export const ProductItem: FC<ProductItemProps> = ({ product }) => {
+  const dispatch = useAppDispatch();
+
+  const onClick = useCallback(() => {
+    dispatch(addToCart(product));
+  }, [dispatch, product]);
+
   return (
     <div data-testid={product.id} className="card w-100 mb-4">
       <Image className="card-img-top" />
@@ -21,7 +28,11 @@ export const ProductItem: FC<ProductItemProps> = ({ product }) => {
             <span className="fs-3">${product.price}</span>
           </div>
           <div className="col-auto">
-            <button type="button" className="btn btn-outline-primary">
+            <button
+              type="button"
+              className="btn btn-outline-primary"
+              onClick={onClick}
+            >
               Add to Cart
             </button>
           </div>

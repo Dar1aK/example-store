@@ -39,7 +39,7 @@ export const Home: FC = () => {
         </div>
       </div>
       <div className="row mb-4">
-        <div className="col-12py-3">
+        <div className="col-12 py-3">
           <p>
             Sed voluptatum quis voluptates laudantium incidunt laudantium. Illo
             non quos eos vel ipsa. Explicabo itaque est optio neque rerum
