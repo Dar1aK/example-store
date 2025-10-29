@@ -4,7 +4,7 @@ import { Layout } from "./layout";
 import { Home } from "./pages/home";
 import { Catalog } from "./pages/catalog";
 import { Product } from "./pages/product";
-import { Checkout } from "./pages/checkout";
+import { Cart } from "./pages/cart";
 import { About } from "./pages/about";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
@@ -20,7 +20,7 @@ export const Application: FC = () => {
           <Route index element={<Home />} />
           <Route path="catalog" element={<Catalog />} />
           <Route path="catalog/:id" element={<Product />} />
-          <Route path="checkout" element={<Checkout />} />
+          <Route path="cart" element={<Cart />} />
           <Route path="about" element={<About />} />
         </Routes>
       </Layout>

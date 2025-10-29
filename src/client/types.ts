@@ -12,6 +12,12 @@ export interface CartItem {
 
 export type CartState = Record<number, CartItem>;
 
+export interface LastOrder {
+  id: number;
+  totalAmount: number;
+  createdAt: string;
+}
+
 export interface Order {
   form: CheckoutFormData;
   cart: CartState;

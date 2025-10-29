@@ -21,3 +21,9 @@ export interface CheckoutRequest {
     address: string;
   };
 }
+
+export interface CheckoutResponse {
+  id: number;
+  totalAmount: number;
+  createdAt: string;
+}

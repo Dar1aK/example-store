@@ -32,7 +32,7 @@ export async function createServer({
   app.get("/", indexHtml);
   app.get("/catalog", indexHtml);
   app.get("/catalog/:id", indexHtml);
-  app.get("/checkout", indexHtml);
+  app.get("/cart", indexHtml);
   app.get("/about", indexHtml);
 
   // api

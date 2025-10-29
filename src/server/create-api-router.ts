@@ -1,6 +1,6 @@
 import express from "express";
 
-import type { CheckoutRequest } from "../common/types";
+import type { CheckoutRequest, CheckoutResponse } from "../common/types";
 import type { ExampleDataSource } from "./example-data-source";
 import { ApiError, errorHandlerMiddleware } from "./utils";
 
@@ -24,7 +24,8 @@ export function createApiRouter(dataSource: ExampleDataSource) {
   apiRouter.post("/checkout", express.json(), (req, res, _next) => {
     const orderParams: CheckoutRequest = req.body;
     const { id, totalAmount, createdAt } = dataSource.checkout(orderParams);
-    res.json({ id, totalAmount, createdAt });
+    const response: CheckoutResponse = { id, totalAmount, createdAt };
+    res.json(response);
   });
 
   apiRouter.use("*all", (_req, _res) => {

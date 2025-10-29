@@ -20,9 +20,7 @@ export const Layout: FC<PropsWithChildren> = ({ children }) => {
           <ul className="navbar-nav flex-fill">
             <HeaderLink to="/catalog" text="Catalog" />
             <HeaderLink to="/about" text="About" />
-          </ul>
-          <ul className="navbar-nav">
-            <HeaderLink to="/checkout" text={cartLabel} />
+            <HeaderLink to="/cart" text={cartLabel} />
           </ul>
         </div>
       </nav>
