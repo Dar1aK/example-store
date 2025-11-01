@@ -1,15 +1,18 @@
+/** базовая информация о товаре */
 export interface ProductShortInfo {
   id: number;
   name: string;
   price: number;
 }
 
+/** подробная информация о товаре */
 export interface Product extends ProductShortInfo {
   description: string;
   material: string;
   color: string;
 }
 
+/** параметры запроса оформления заказа */
 export interface CheckoutRequest {
   items: {
     id: number;
@@ -22,6 +25,7 @@ export interface CheckoutRequest {
   };
 }
 
+/** формат ответа оформления заказа */
 export interface CheckoutResponse {
   id: number;
   totalAmount: number;

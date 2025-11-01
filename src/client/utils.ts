@@ -1,10 +1,6 @@
 import type { CartState } from "@/types";
 
-/**
- * Форматирует дату в локализованную строку
- * @param date Дата для форматирования
- * @returns Отформатированная строка даты
- */
+/** форматирует дату в локализованную строку */
 export function formatDate(date: Date): string {
   return date.toLocaleString("ru-RU", {
     day: "2-digit",
@@ -15,18 +11,18 @@ export function formatDate(date: Date): string {
   });
 }
 
+/** ключ, в котором хранится состояние корзины в localStorage */
 export const LOCAL_STORAGE_CART_KEY = "example-store-cart";
 
+/** состояние корзины по умолчанию */
 export const EMPTY_CART: CartState = {};
 
-/**
- * Сохранение состояния корзины в LocalStorage
- * @param cart
- */
+/** сохранение состояния корзины в LocalStorage */
 export const saveCartToLocalStorage = (cart: CartState): void => {
   localStorage.setItem(LOCAL_STORAGE_CART_KEY, JSON.stringify(cart));
 };
 
+/** получение состояния корзины из LocalStorage */
 export const getCartFromLocalStorage = (): CartState => {
   try {
     const json = localStorage.getItem(LOCAL_STORAGE_CART_KEY);

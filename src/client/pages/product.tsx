@@ -8,6 +8,7 @@ import { ProductDetails } from "@components/product-details";
 import { PageTitle } from "@/components/page-title";
 import { DocumentTitle } from "@/components/document-title";
 
+/** страница отдельного товара */
 export const Product: FC = () => {
   let { id } = useParams();
 

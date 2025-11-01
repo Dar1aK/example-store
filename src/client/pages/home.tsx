@@ -1,56 +1,47 @@
 import type { FC } from "react";
 import { DocumentTitle } from "@/components/document-title";
 
+/** главная страница */
 export const Home: FC = () => {
   return (
     <>
       <DocumentTitle text="Home" />
       <div className="row">
-        <div className="col bg-secondary text-white py-4 bg-opacity-75">
+        <div className="col bg-secondary text-white py-5 bg-opacity-75">
           <p className="display-3">Welcome to Example store!</p>
           <p className="lead">
-            Culpa perspiciatis corporis facilis fugit similique
-          </p>
-          <p className="lead">
-            Cum aut ut eveniet rem cupiditate natus veritatis quia
+            Example store — приложение-тренажер для написания автотестов
           </p>
         </div>
       </div>
       <div className="row mb-4">
-        <div className="col-12 col-md-4 bg-light py-3">
-          <h1>Quickly</h1>
+        <div className="col-12 col-md-6 bg-light py-3">
+          <h2>Реалистичная предметная&nbsp;область</h2>
           <p className="lead">
-            Odio aut assumenda ipsam amet reprehenderit. Perspiciatis qui
-            molestiae qui tempora quisquam
+            Проект имитирует реализацию интернет-магазина, при этом код написан
+            в упрощенном, учебном стиле
           </p>
         </div>
-        <div className="col-12 col-md-4 bg-light py-3">
-          <h1>Qualitatively</h1>
+        <div className="col-12 col-md-6 bg-light py-3">
+          <h2>Реалистичный стек технологий</h2>
           <p className="lead">
-            Ut nisi distinctio est non voluptatem. Odio aut assumenda ipsam amet
-            reprehenderit
-          </p>
-        </div>
-        <div className="col-12 col-md-4 bg-light py-3">
-          <h1>Inexpensive</h1>
-          <p className="lead">
-            Perspiciatis qui molestiae qui tempora quisquam. Ut nisi distinctio
-            est non voluptatem
+            Приложение написано на typescript+react со сборкой на vite, есть
+            серверная часть. Использованы популярные библиотеки: react-router,
+            react-query, redux-toolkit
           </p>
         </div>
       </div>
-      <div className="row mb-4">
-        <div className="col-12 py-3">
+      <div className="row">
+        <div className="col">
           <p>
-            Sed voluptatum quis voluptates laudantium incidunt laudantium. Illo
-            non quos eos vel ipsa. Explicabo itaque est optio neque rerum
-            provident enim qui sed. Corrupti commodi voluptatem vero soluta hic.
-          </p>
-          <p>
-            Modi corporis consectetur aliquid sit cum tenetur enim. Sed
-            voluptatum quis voluptates laudantium incidunt laudantium. Illo non
-            quos eos vel ipsa. Explicabo itaque est optio neque rerum provident
-            enim qui sed. Corrupti commodi voluptatem vero soluta hic.
+            Перейтите в{" "}
+            <a href="https://github.com/dima117/example-store" target="_blank">
+              GitHub репозиторий
+            </a>{" "}
+            с исходным кодом приложения. Следуя инструкции в README, загрузите проект на свой
+            компьютер, запустите его и проверьте в браузере, что всё работает.
+            Попробуйте покрыть автотестами функциональные требования, указанные
+            в README.
           </p>
         </div>
       </div>

@@ -7,6 +7,7 @@ import { Link } from "react-router";
 import type { CheckoutFormData } from "@/types";
 import { DocumentTitle } from "@/components/document-title";
 
+/** страница корзины с формой оформления заказа */
 export const Cart: FC = () => {
   const dispatch = useAppDispatch();
   const cart = useAppSelector((s) => s.cart);

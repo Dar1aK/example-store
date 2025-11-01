@@ -3,10 +3,11 @@ import type { Product } from "@common/types";
 import { Image } from "@components/image";
 import { useCallback } from "react";
 
-export interface ProductDetailsProps {
+interface ProductDetailsProps {
   product: Product;
 }
 
+/** компонент отображения подробной информации о товаре */
 export const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
   const dispatch = useAppDispatch();
 

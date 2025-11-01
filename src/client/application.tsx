@@ -5,13 +5,14 @@ import { Home } from "./pages/home";
 import { Catalog } from "./pages/catalog";
 import { Product } from "./pages/product";
 import { Cart } from "./pages/cart";
-import { About } from "./pages/about";
+import { Contacts } from "./pages/contacts";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const client = new QueryClient();
 
+/** основной компонент приложения */
 export const Application: FC = () => {
   return (
     <QueryClientProvider client={client}>
@@ -21,7 +22,7 @@ export const Application: FC = () => {
           <Route path="catalog" element={<Catalog />} />
           <Route path="catalog/:id" element={<Product />} />
           <Route path="cart" element={<Cart />} />
-          <Route path="about" element={<About />} />
+          <Route path="contacts" element={<Contacts />} />
         </Routes>
       </Layout>
     </QueryClientProvider>

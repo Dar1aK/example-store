@@ -4,6 +4,7 @@ import { NavLink } from "react-router";
 import { HeaderLink } from "@components/header-link";
 import { useAppSelector } from "@/store";
 
+/** общая часть интерфейса для всех страниц приложения */
 export const Layout: FC<PropsWithChildren> = ({ children }) => {
   // cart info
   const cart = useAppSelector((s) => s.cart);
@@ -19,7 +20,7 @@ export const Layout: FC<PropsWithChildren> = ({ children }) => {
           </NavLink>
           <ul className="navbar-nav flex-fill">
             <HeaderLink to="/catalog" text="Catalog" />
-            <HeaderLink to="/about" text="About" />
+            <HeaderLink to="/contacts" text="Contacts" />
             <HeaderLink to="/cart" text={cartLabel} />
           </ul>
         </div>

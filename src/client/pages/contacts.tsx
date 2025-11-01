@@ -3,11 +3,12 @@ import { Image } from "@components/image";
 import { PageTitle } from "@/components/page-title";
 import { DocumentTitle } from "@/components/document-title";
 
-export const About: FC = () => {
+/** страница с контактами */
+export const Contacts: FC = () => {
   return (
     <>
-      <DocumentTitle text="About" />
-      <PageTitle>About us</PageTitle>
+      <DocumentTitle text="Contacts" />
+      <PageTitle>Contacts</PageTitle>
       <div className="row">
         <div className="col">
           <p>

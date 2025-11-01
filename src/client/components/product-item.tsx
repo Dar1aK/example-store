@@ -9,6 +9,7 @@ interface ProductItemProps {
   product: ProductShortInfo;
 }
 
+/** компонент карточки товара в каталоге */
 export const ProductItem: FC<ProductItemProps> = ({ product }) => {
   const dispatch = useAppDispatch();
 

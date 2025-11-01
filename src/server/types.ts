@@ -1,6 +1,4 @@
-/**
- * Позиция заказа
- */
+/** позиция заказа */
 export interface OrderItem {
   id: number;
   count: number;
@@ -8,9 +6,7 @@ export interface OrderItem {
   total: number;
 }
 
-/**
- * Оформленный заказ
- */
+/** оформленный заказ */
 export interface Order {
   id: number;
   items: OrderItem[];

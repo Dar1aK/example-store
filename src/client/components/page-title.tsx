@@ -1,5 +1,6 @@
 import type { FC, PropsWithChildren } from "react";
 
+/** заголовок страницы */
 export const PageTitle: FC<PropsWithChildren> = ({ children }) => {
   return (
     <div className="row">

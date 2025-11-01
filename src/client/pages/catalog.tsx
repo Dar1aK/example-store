@@ -8,6 +8,7 @@ import { ProductItem } from "@components/product-item";
 import { PageTitle } from "@/components/page-title";
 import { DocumentTitle } from "@/components/document-title";
 
+/** страница каталога со списком товаров */
 export const Catalog: FC = () => {
   const { data } = useQuery({
     queryKey: ["products"],

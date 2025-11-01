@@ -2,6 +2,10 @@ import express from "express";
 import { readFileSync } from "node:fs";
 import { createServer } from "vite";
 
+/**
+ * Создает и настраивает vite dev server
+ * @param templateFilePath Путь к шаблону index htlm
+ */
 export const createViteServer = async (templateFilePath: string) => {
   const { transformIndexHtml, ssrLoadModule, ssrFixStacktrace, middlewares } =
     await createServer({

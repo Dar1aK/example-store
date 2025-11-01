@@ -6,6 +6,7 @@ interface HeaderLinkProps {
   to: string;
 }
 
+/** элемент навигационного меню */
 export const HeaderLink: FC<HeaderLinkProps> = ({ to, text }) => {
   return (
     <li className="nav-item">

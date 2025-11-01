@@ -3,7 +3,7 @@ import { useCallback, useState, type ChangeEvent, type FC } from "react";
 
 const PHONE_REGEX = /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/;
 
-export interface CheckoutFormProps {
+interface CheckoutFormProps {
   onSubmit: (data: CheckoutFormData) => void;
 }
 
@@ -11,6 +11,7 @@ function getControlClass(isValid: boolean, submitted: boolean) {
   return !isValid && submitted ? "form-control is-invalid" : "form-control";
 }
 
+/** форма оформления заказа */
 export const CheckoutForm: FC<CheckoutFormProps> = ({ onSubmit }) => {
   const [sent, setSent] = useState(false);
   const [submitted, setSubmitted] = useState(false);

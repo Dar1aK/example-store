@@ -65,11 +65,18 @@ const slice = createSlice({
   },
 });
 
-export interface CheckoutActionPayload {
+/** redux action: добавление товара в корзину */
+export const addToCart = slice.actions.addToCart;
+
+/** redux action: очистка корзины */
+export const clearCart = slice.actions.clearCart;
+
+interface CheckoutActionPayload {
   form: CheckoutFormData;
   cart: CartState;
 }
 
+/** redux action: оформление заказа  */
 export const checkout = createAsyncThunk<
   CheckoutResponse,
   CheckoutActionPayload
@@ -95,6 +102,7 @@ export const checkout = createAsyncThunk<
   return response.data;
 });
 
+/** создать экземпляр redux store */
 export const initStore = () => {
   const store = configureStore({
     reducer: slice.reducer,
@@ -108,13 +116,13 @@ export const initStore = () => {
   return store;
 };
 
-export const { addToCart, clearCart } = slice.actions;
+// store typings
+type Store = ReturnType<typeof initStore>;
+type RootState = ReturnType<Store["getState"]>;
+type AppDispatch = Store["dispatch"];
 
-export type Store = ReturnType<typeof initStore>;
-
-export type RootState = ReturnType<Store["getState"]>;
-
-export type AppDispatch = Store["dispatch"];
-
+/** типизированный useDispatch */
 export const useAppDispatch = useDispatch.withTypes<AppDispatch>();
+
+/** типизированный useSelector */
 export const useAppSelector = useSelector.withTypes<RootState>();

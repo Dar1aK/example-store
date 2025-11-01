@@ -4,9 +4,7 @@ import type { CheckoutRequest, CheckoutResponse } from "../common/types";
 import type { ExampleDataSource } from "./example-data-source";
 import { ApiError, errorHandlerMiddleware } from "./utils";
 
-/**
- * Создает роутер для обработки запросов к API
- */
+/** Создает роутер для обработки запросов к API */
 export function createApiRouter(dataSource: ExampleDataSource) {
   const apiRouter = express.Router();
 
