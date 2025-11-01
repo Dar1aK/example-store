@@ -1,9 +1,3 @@
-export interface CheckoutFormData {
-  name: string;
-  phone: string;
-  address: string;
-}
-
 export interface CartItem {
   name: string;
   price: number;
@@ -12,13 +6,19 @@ export interface CartItem {
 
 export type CartState = Record<number, CartItem>;
 
-export interface LastOrder {
-  id: number;
-  totalAmount: number;
-  createdAt: string;
+export interface CheckoutFormData {
+  name: string;
+  phone: string;
+  address: string;
 }
 
 export interface Order {
   form: CheckoutFormData;
   cart: CartState;
+}
+
+export interface LastOrder {
+  id: number;
+  totalAmount: number;
+  createdAt: string;
 }

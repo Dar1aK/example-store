@@ -5,25 +5,34 @@ import {
   type PayloadAction,
 } from "@reduxjs/toolkit";
 import type { CartState, CheckoutFormData, LastOrder } from "@/types";
-import type { ProductShortInfo, CheckoutRequest, CheckoutResponse } from "@common/types";
+import type {
+  ProductShortInfo,
+  CheckoutRequest,
+  CheckoutResponse,
+} from "@common/types";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
+import {
+  EMPTY_CART,
+  getCartFromLocalStorage,
+  saveCartToLocalStorage,
+} from "./utils";
 
-const emptyCart: CartState = {};
-
+// state
 interface State {
   cart: CartState;
   lastOrder: LastOrder | null;
 }
 
-const initialState: State = {
-  cart: emptyCart,
-  lastOrder: null
+const INITIAL_STATE: State = {
+  cart: EMPTY_CART,
+  lastOrder: null,
 };
 
+// reducers
 const slice = createSlice({
   name: "example",
-  initialState,
+  initialState: INITIAL_STATE,
   reducers: {
     addToCart: (state, action: PayloadAction<ProductShortInfo>) => {
       const { id, name, price } = action.payload;
@@ -34,27 +43,27 @@ const slice = createSlice({
 
       state.cart[id].count++;
       state.lastOrder = null;
+
+      // Сохраняем корзину в localStorage
+      saveCartToLocalStorage(state.cart);
     },
     clearCart: (state) => {
-      state.cart = emptyCart;
-    }
+      state.cart = EMPTY_CART;
+
+      // Сохраняем пустую корзину в localStorage
+      saveCartToLocalStorage(EMPTY_CART);
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(checkout.fulfilled, (state, action) => {
       state.cart = {};
       state.lastOrder = action.payload;
+
+      // Сохраняем пустую корзину в localStorage после успешного оформления заказа
+      saveCartToLocalStorage(EMPTY_CART);
     });
   },
 });
-
-export const initStore = () => {
-  const store = configureStore({
-    reducer: slice.reducer,
-    devTools: true,
-  });
-
-  return store;
-};
 
 export interface CheckoutActionPayload {
   form: CheckoutFormData;
@@ -64,27 +73,40 @@ export interface CheckoutActionPayload {
 export const checkout = createAsyncThunk<
   CheckoutResponse,
   CheckoutActionPayload
->(
-  "example/checkout",
-  async ({ form, cart }: CheckoutActionPayload) => {
-    const items = Object.entries(cart).map(([id, item]) => ({
-      id: Number(id),
-      count: item.count
-    }));
-    
-    const checkoutData: CheckoutRequest = {
-      items,
-      customer: {
-        name: form.name,
-        phone: form.phone,
-        address: form.address
-      }
-    };
-    
-    const response = await axios.post<CheckoutResponse>("/api/checkout", checkoutData);
-    return response.data;
-  }
-);
+>("example/checkout", async ({ form, cart }: CheckoutActionPayload) => {
+  const items = Object.entries(cart).map(([id, item]) => ({
+    id: Number(id),
+    count: item.count,
+  }));
+
+  const checkoutData: CheckoutRequest = {
+    items,
+    customer: {
+      name: form.name,
+      phone: form.phone,
+      address: form.address,
+    },
+  };
+
+  const response = await axios.post<CheckoutResponse>(
+    "/api/checkout",
+    checkoutData
+  );
+  return response.data;
+});
+
+export const initStore = () => {
+  const store = configureStore({
+    reducer: slice.reducer,
+    preloadedState: {
+      cart: getCartFromLocalStorage(),
+      lastOrder: null,
+    },
+    devTools: true,
+  });
+
+  return store;
+};
 
 export const { addToCart, clearCart } = slice.actions;
 
