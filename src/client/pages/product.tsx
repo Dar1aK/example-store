@@ -1,26 +1,32 @@
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, type UseQueryResult } from '@tanstack/react-query';
 import type { FC } from 'react';
 import { useParams } from 'react-router';
 
-import type { Product as ProductInfo } from '@common/types';
+import type { Product as IProduct, Product as ProductInfo } from '@common/types';
 import axios from 'axios';
 import { ProductDetails } from '@components/product-details';
 import { PageTitle } from '@/components/page-title';
 import { DocumentTitle } from '@/components/document-title';
 
-/** страница отдельного товара */
-export const Product: FC = () => {
-    let { id } = useParams();
-
-    const { data } = useQuery({
+export const useProductDetailHook = (id: string): UseQueryResult<NoInfer<IProduct>> => {
+    return useQuery({
         queryKey: ['details', id],
         queryFn: async () => {
             return (await axios.get<ProductInfo>(`/api/products/${id}`)).data;
         },
     });
+};
+
+/** страница отдельного товара */
+export const Product: FC = () => {
+    let { id = '' } = useParams();
+
+    const { data } = useProductDetailHook(id);
+
+    console.log('data', data, id);
 
     if (!data) {
-        return <div data-testid="loading">Loading...</div>;
+        return <div data-testid="loading">"Loading..."</div>;
     }
 
     return (
